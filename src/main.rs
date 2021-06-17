@@ -8,7 +8,7 @@ fn main() -> std::io::Result<()> {
     let mut rng = rand::thread_rng();
 
     // const MAX_ITERATIONS: i32 = 10000;
-    const MAX_STRING_COPIES: i32 = 40000;
+    const MAX_STRING_COPIES: i32 = 100000;
 
     let mut strings;
 
@@ -39,10 +39,12 @@ fn main() -> std::io::Result<()> {
         let finish_since_the_epoch = finish.duration_since(UNIX_EPOCH).expect("Time went backwards");
 
         let consumed_time = finish_since_the_epoch - start_since_the_epoch;
-        let sleep_time = loop_duration_target - consumed_time;
+        if consumed_time < loop_duration_target {
+            let sleep_time = loop_duration_target - consumed_time;
 
-        println!("sleeping for {}ms", sleep_time.as_millis());
+            println!("sleeping for {}ms", sleep_time.as_millis());
 
-        thread::sleep(sleep_time);
+            thread::sleep(sleep_time);
+        }
     }
 }
