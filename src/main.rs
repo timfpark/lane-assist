@@ -8,7 +8,7 @@ fn main() -> std::io::Result<()> {
     let mut rng = rand::thread_rng();
 
     // const MAX_ITERATIONS: i32 = 10000;
-    const MAX_STRING_COPIES: i32 = 100000;
+    const MAX_STRING_COPIES: i32 = 60000;
 
     let mut strings;
 
